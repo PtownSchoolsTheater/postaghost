@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post a Ghost</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .ghost-form, .ghost-wall {
+            width: 50%;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .ghost {
+            padding: 10px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            background-color: #eee;
+            border-radius: 5px;
+        }
+        .ghost h3 {
+            color: darkred;
+        }
+        .ghost img {
+            max-width: 50px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Post a Ghost Fundraiser</h1>
+
+    <!-- Ghost Form -->
+    <div class="ghost-form">
+        <h2>Post a Ghost</h2>
+        <form id="ghostForm">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br><br>
+
+            <label for="ghostSize">Choose Ghost Size:</label><br>
+            <select id="ghostSize" name="ghostSize" required>
+                <option value="small">Small Ghost ($10)</option>
+                <option value="large">Large Ghost ($20)</option>
+            </select><br><br>
+
+            <button type="submit">Post My Ghost</button>
+        </form>
+    </div>
+
+    <!-- Ghost Wall -->
+    <div class="ghost-wall">
+        <h2>Ghost Wall</h2>
+        <div id="postedGhosts"></div>
+    </div>
+
+    <script>
+        // JavaScript to handle form submission and update the Ghost Wall
+        document.getElementById('ghostForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const ghostSize = document.getElementById('ghostSize').value;
+
+            // Create a new ghost element
+            const ghostElement = document.createElement('div');
+            ghostElement.classList.add('ghost');
+            ghostElement.innerHTML = `
+                <h3>${name}'s Ghost</h3>
+                <p>Size: ${ghostSize === 'small' ? 'Small ($10)' : 'Large ($20)'}</p>
+                <img src="https://www.clipartmax.com/png/small/329-3294166_halloween-ghost-halloween-cartoon-ghost-png.png" alt="ghost">
+            `;
+
+            // Add the new ghost to the Ghost Wall
+            document.getElementById('postedGhosts').appendChild(ghostElement);
+
+            // Clear the form
+            document.getElementById('ghostForm').reset();
+        });
+    </script>
+
+</body>
+</html>
